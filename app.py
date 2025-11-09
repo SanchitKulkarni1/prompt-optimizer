@@ -269,3 +269,11 @@ async def get_metrics(request_id: str):
     if not entry:
         raise HTTPException(status_code=404, detail="not found")
     return entry
+
+if __name__ == "__main__":
+    import uvicorn
+    # Make sure host is '0.0.0.0' and port is from an env variable
+    # Render will provide the PORT, default to 8000 for local
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
